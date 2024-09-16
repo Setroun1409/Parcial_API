@@ -1,0 +1,915 @@
+{
+	"info": {
+		"_postman_id": "3ed12c85-a9b9-4aa5-b9f4-16007cd54877",
+		"name": "Parcial_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37806769"
+	},
+	"item": [
+		{
+			"name": "Ciudades",
+			"item": [
+				{
+					"name": "Crear una ciudad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Luminaria\",\n  \"pais\": \"Eldoria\",\n  \"numeroHabitantes\": 875000\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/ciudades",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ciudades"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear una ciudad valida",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Luminaria\",\n  \"pais\": \"Eldoria\",\n  \"numeroHabitantes\": 875000\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n    \"nombre\": \"Luminaria\",\n    \"pais\": \"Eldoria\",\n    \"numeroHabitantes\": 875000\n}"
+						},
+						{
+							"name": "Crear una ciudad invalida",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La ciudad con la id no pudo ser creada\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Asociar un nuevo supermercado a una ciudad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/ciudades/{{id_ciudad}}/supermercados/{{id_supermercado}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ciudades",
+								"{{id_ciudad}}",
+								"supermercados",
+								"{{id_supermercado}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Asociar un nuevo supermercado a una ciudad",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/{{id_ciudad}}/supermercados/{{id_supermercado}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"{{id_ciudad}}",
+										"supermercados",
+										"{{id_supermercado}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n    \"nombre\": \"Luminaria\",\n    \"pais\": \"Eldoria\",\n    \"numeroHabitantes\": 875000,\n    \"supermercados\": [\n        {\n            \"nombre\": \"Mercado del Valle\",\n            \"longitud\": -72.5836,\n            \"latitud\": -37.8184,\n            \"paginaWeb\": \"http://www.mercadovalley.com\"\n        },\n        {\n            \"nombre\": \"Supermercado Nova\",\n            \"longitud\": -72.587,\n            \"latitud\": -37.82,\n            \"paginaWeb\": \"http://www.supernovastore.com\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Asociar un supermercado que no existe a una ciudad",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/{{id_ciudad}/supermercados/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"{{id_ciudad}",
+										"supermercados",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado con la id dada no existe\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener todas las ciudades",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Obtener todas las ciudades",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Buenos Aires\",\n        \"pais\": \"Argentina\",\n        \"habitantes\": 2890151\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Madrid\",\n        \"pais\": \"España\",\n        \"habitantes\": 6664000\n    },\n    {\n        \"id\": 3,\n        \"nombre\": \"Ciudad de México\",\n        \"pais\": \"México\",\n        \"habitantes\": 9209944\n    }\n]\n"
+						}
+					]
+				},
+				{
+					"name": "Obtener ciudad con id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/ciudades{{id_ciudad}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ciudades{{id_ciudad}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtener ciudad con id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades{{id_ciudad}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades{{id_ciudad}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "\n    {\n        \"id\": 1,\n        \"nombre\": \"Buenos Aires\",\n        \"pais\": \"Argentina\",\n        \"habitantes\": 2890151\n    }\n  "
+						},
+						{
+							"name": "Obtener ciudad con id que no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La ciudad con el id dado no fue encontrada\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar una ciudad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"nombre\": \"Ciudad de México\",\n        \"pais\": \"México\",\n        \"habitantes\": 9209944\n    }\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/ciudades/{{id_ciudad}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ciudades",
+								"{{id_ciudad}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Actualizar una ciudad",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"nombre\": \"Ciudad de México\",\n        \"pais\": \"México\",\n        \"habitantes\": 9209944\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/{{id_ciudad}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"{{id_ciudad}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Ciudad de México\",\n    \"pais\": \"México\",\n    \"habitantes\": 9209944\n}"
+						},
+						{
+							"name": "Actualizar una ciudad que no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La ciudad con la id dada no se encontro\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar una ciudad",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Eliminar una ciudad",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/{{id_ciudad}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"{{id_ciudad}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Eliminar una ciudad que no existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"La ciudad con el id dado no se encontro\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Supermercados",
+			"item": [
+				{
+					"name": "Crear un supermercado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Mercado del Valle\",\n  \"longitud\": -72.5836,\n  \"latitud\": -37.8184,\n  \"paginaWeb\": \"http://www.mercadovalley.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/supermercados",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"supermercados"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear un supermercado valido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Mercado del Valle\",\n  \"longitud\": -72.5836,\n  \"latitud\": -37.8184,\n  \"paginaWeb\": \"http://www.mercadovalley.com\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n    \"nombre\": \"Mercado del Valle\",\n    \"longitud\": -72.5836,\n    \"latitud\": -37.8184,\n    \"paginaWeb\": \"http://www.mercadovalley.com\"\n}"
+						},
+						{
+							"name": "Crear un supermercado invalido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Mercado del Valle\",\n  \"longitud\": -72.5836,\n  \"latitud\": -37.8184,\n  \"paginaWeb\": \"http://www.mercadovalley.com\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado con el id dado no se encontro\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener todos los supermercados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/supermercados",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"supermercados"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtener todos los supermercados",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Supermercado ABC\",\n        \"longitud\": -58.3816,\n        \"latitud\": -34.6037,\n        \"pagina_web\": \"http://superabc.com\"\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Mercado Central\",\n        \"longitud\": -3.7038,\n        \"latitud\": 40.4168,\n        \"pagina_web\": \"http://mercadocentral.es\"\n    },\n    {\n        \"id\": 3,\n        \"nombre\": \"Hipermercado XYZ\",\n        \"longitud\": -99.1332,\n        \"latitud\": 19.4326,\n        \"pagina_web\": \"http://hiperxyz.com.mx\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Obtener supermercado por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/supermercados{{id_supermercado}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"supermercados{{id_supermercado}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtener supermercado por id que no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado con el id dado no se encontro\"\n}"
+						},
+						{
+							"name": "Obtener supermercado por id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados{{id_supermercado}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados{{id_supermercado}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"Supermercado ABC\",\n    \"longitud\": -58.3816,\n    \"latitud\": -34.6037,\n    \"pagina_web\": \"http://superabc.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar un supermercado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Supermercado ABC\",\n    \"longitud\": -58.3816,\n    \"latitud\": -34.6037,\n    \"pagina_web\": \"http://superabc.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/supermercados/{{id_supermercado}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"supermercados",
+								"{{id_supermercado}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Actualizar un supermercado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Supermercado ABC\",\n    \"longitud\": -58.3816,\n    \"latitud\": -34.6037,\n    \"pagina_web\": \"http://superabc.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados/{{id_supermercado}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados",
+										"{{id_supermercado}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"Supermercado ABC\",\n    \"longitud\": -58.3816,\n    \"latitud\": -34.6037,\n    \"pagina_web\": \"http://superabc.com\"\n}"
+						},
+						{
+							"name": "Actualizar un supermercado que no existe",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/supermercados/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"supermercados",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado con la id dada no se encontro\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar un supermercado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/{{version}}/supermercados/{{id_supermercado}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"supermercados",
+								"{{id_supermercado}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar un supermercado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Eliminar un supermercado que no existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/{{version}}/ciudades/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"{{version}}",
+										"ciudades",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado con el id dado no se encontro\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
